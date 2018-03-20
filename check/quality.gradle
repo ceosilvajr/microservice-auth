@@ -1,0 +1,7 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
+apply from: "$rootDir/check/checkstyle/checkstyle.gradle"
+apply from: "$rootDir/check/pmd/pmd.gradle"
+apply from: "$rootDir/check/findbugs/findbugs.gradle"

@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
+apply plugin: 'pmd'
+
+pmd {
+  ruleSetFiles = files(new File(rootDir, 'check/pmd/pmd_ruleSet.xml'))
+}
+
+tasks.withType(Pmd) {
+  source = fileTree('src/main/java')
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+dependencies {
+  // Required by PMD plugin
+  pmd 'com.qulice:qulice-pmd:0.16.4'
+}

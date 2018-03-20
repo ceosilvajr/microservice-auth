@@ -1,0 +1,5 @@
+language: java
+install: gradle clean build check
+notifications:
+  email:
+      - ceosilvajr@gmail.com

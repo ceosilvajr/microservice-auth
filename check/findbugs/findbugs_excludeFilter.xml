@@ -1,0 +1,30 @@
+<!--
+  ~ Copyright (c) 2018. ceosilvajr All rights reserved
+  -->
+
+<FindBugsFilter>
+  <Match>
+    <Package name="~com\.google\.common\.base\.*"/>
+  </Match>
+  <Match>
+    <Package name="~org\.w3\._2000\._09\.xmldsig_\.*"/>
+  </Match>
+  <Match>
+    <Class name="~.*DynamicJsonConverter"/>
+  </Match>
+  <Match>
+    <Class name="~.*GoogleAppEngineCall"/>
+  </Match>
+  <Match>
+    <Class name="~.*Test$"/>
+  </Match>
+  <Match>
+    <Package name="~test\..*"/>
+  </Match>
+  <Match>
+    <Bug pattern="NM_CLASS_NOT_EXCEPTION"/>
+  </Match>
+  <Match>
+    <Bug pattern="URF_UNREAD_FIELD"/>
+  </Match>
+</FindBugsFilter>

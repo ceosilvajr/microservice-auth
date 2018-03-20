@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
+apply plugin: 'findbugs'
+
+
+findbugs {
+  ignoreFailures = false
+  effort = 'max'
+  excludeFilter = new File(rootDir, 'check/findbugs/findbugs_excludeFilter.xml')
+}
+
+tasks.withType(FindBugs) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+  // Exclude generated radixx wsdl2java file
+  exclude '**/org/**'
+  exclude '**/com/**'
+}
