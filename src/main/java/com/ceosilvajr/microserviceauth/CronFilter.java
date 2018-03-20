@@ -1,6 +1,7 @@
 package com.ceosilvajr.microserviceauth;
 
 import com.ceosilvajr.microserviceauth.config.AppConfig;
+import com.ceosilvajr.microserviceauth.config.AppConstants;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author ceosilvajr@gmail.com
  **/
 public class CronFilter implements Filter {
-
-  private static final String CRON_PATH = "cron";
-  private static final String API_KEY = "apiKey";
 
   @Override public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
       throws IOException, ServletException {
@@ -41,7 +39,7 @@ public class CronFilter implements Filter {
   }
 
   private boolean isAuthorized(final HttpServletRequest request) {
-    return request.getServletPath().contains(CronFilter.CRON_PATH)
-        && AppConfig.SERVICE_API_KEY.getValue().equals(request.getParameter(CronFilter.API_KEY));
+    return request.getServletPath().contains(AppConstants.CRON_PATH)
+        && AppConfig.SERVICE_API_KEY.getValue().equals(request.getParameter(AppConstants.API_KEY));
   }
 }
