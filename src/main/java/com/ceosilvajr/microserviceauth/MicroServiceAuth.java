@@ -16,7 +16,7 @@ public class MicroServiceAuth<T extends ApiClass> {
     this.endpoint = endpoint;
   }
 
-  public MicroServiceAuth instanceOf(final String endpoint) {
+  public static MicroServiceAuth instanceOf(final String endpoint) {
     return new MicroServiceAuth(endpoint);
   }
 
