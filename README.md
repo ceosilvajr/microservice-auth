@@ -6,7 +6,7 @@ Simple authentication for microservices using JWT and Retrofit
 
 Download 
 -------
-Step 1. Add the JitPack repository to your build file
+1. Add the JitPack repository to your build file
 ```
 allprojects {
 		repositories {
@@ -14,7 +14,7 @@ allprojects {
 		}
 	}
 ```
-Step 2. Add the dependency
+2. Add the dependency
 ```
 dependencies {
 	  compile 'com.github.ceosilvajr:microservice-auth:+'
