@@ -10,7 +10,8 @@ public enum AppConfig {
   SERVICE_HEADER_NAME(System.getProperty("service.header.name")),
   SERVICE_SECRET_KEY(System.getProperty("service.secret.key")),
   SERVICE_APP_ID(System.getProperty("service.appId")),
-  SERVICE_APP_KEY(System.getProperty("service.appKey"));
+  SERVICE_APP_KEY(System.getProperty("service.appKey")),
+  SERVICE_API_KEY(System.getProperty("service.apiKey"));
 
   private final String value;
 
