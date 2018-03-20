@@ -17,17 +17,15 @@ public final class RetrofitProvider {
   private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
   private final String endpoint;
   private final String dateTimeFormat;
-  private final RestAdapter.LogLevel logLevel;
 
   public RetrofitProvider(final Builder builder) {
     this.endpoint = builder.endpoint;
     this.dateTimeFormat = builder.dateTimeFormat;
-    this.logLevel = builder.logLevel;
   }
 
   public RestAdapter initializeRestAdapter() {
     return new RestAdapter.Builder().setEndpoint(endpoint)
-        .setLogLevel(logLevel)
+        .setLogLevel(RestAdapter.LogLevel.FULL)
         .setClient(new UrlFetchClient())
         .setConverter(new DynamicJsonConverter(new GsonBuilder().setDateFormat(dateTimeFormat).create()))
         .setRequestInterceptor(request -> request.addHeader(AppConfig.SERVICE_HEADER_NAME.getValue(), serviceToken()))
@@ -43,21 +41,14 @@ public final class RetrofitProvider {
 
     private final String endpoint;
     private String dateTimeFormat;
-    private RestAdapter.LogLevel logLevel;
 
     public Builder(final String endpoint) {
       this.endpoint = endpoint;
       this.dateTimeFormat = RetrofitProvider.DATE_TIME_FORMAT;
-      this.logLevel = RestAdapter.LogLevel.FULL;
     }
 
     public Builder setDateTimeFormat(final String dateTimeFormat) {
       this.dateTimeFormat = dateTimeFormat;
-      return this;
-    }
-
-    public Builder setLogLevel(final RestAdapter.LogLevel logLevel) {
-      this.logLevel = logLevel;
       return this;
     }
 
