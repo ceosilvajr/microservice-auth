@@ -6,6 +6,7 @@ allprojects {
   repositories {
     jcenter()
     mavenCentral()
+    maven { url 'https://jitpack.io' }
   }
 }
 
@@ -17,6 +18,7 @@ ext {
   jwt = '0.7.0'
   commonsLang3 = '3.6'
   commonsCodec = '1.11'
+  servletUtil = 'v0.0.2'
   testNg = '6.9.12'
   mockito = '1.10.19'
 }
@@ -27,6 +29,7 @@ dependencies {
   compile group: 'io.jsonwebtoken', name: 'jjwt', version: "$rootProject.jwt"
   compile group: 'org.apache.commons', name: 'commons-lang3', version: "$rootProject.commonsLang3"
   compile group: 'commons-codec', name: 'commons-codec', version: "$rootProject.commonsCodec"
+  compile group: 'com.github.ceosilvajr', name: 'servlet-util', version: "$rootProject.servletUtil"
 
   testCompile group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
   testCompile group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
@@ -36,6 +39,10 @@ def skip_quality_check = project.hasProperty('check') && check == 'false'
 println("skip_quality_check: " + skip_quality_check)
 if (!skip_quality_check) {
   apply from: "$rootDir/check/quality.gradle"
+}
+
+configurations.all {
+  resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
