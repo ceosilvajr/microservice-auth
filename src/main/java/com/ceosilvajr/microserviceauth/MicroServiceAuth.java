@@ -12,7 +12,7 @@ public class MicroServiceAuth<T extends ApiClass> {
 
   private final String endpoint;
 
-  public MicroServiceAuth(final String endpoint) {
+  private MicroServiceAuth(final String endpoint) {
     this.endpoint = endpoint;
   }
 
