@@ -1,6 +1,7 @@
 package com.ceosilvajr.microserviceauth.jwt;
 
 import com.ceosilvajr.microserviceauth.config.AppConfig;
+import com.ceosilvajr.microserviceauth.config.AppConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.nio.charset.Charset;
@@ -26,8 +27,10 @@ public final class PayloadDecoder {
   public Payload decode() {
     final Claims claims = getClaims(encodedPayload);
     return new Payload.Builder(
-        new String(DatatypeConverter.parseBase64Binary(getField(claims, "appId")), Charset.defaultCharset()),
-        new String(DatatypeConverter.parseBase64Binary(getField(claims, "appKey")), Charset.defaultCharset())
+        new String(DatatypeConverter.parseBase64Binary(getField(claims, AppConstants.APP_ID)),
+            Charset.defaultCharset()),
+        new String(DatatypeConverter.parseBase64Binary(getField(claims, AppConstants.APP_KEY)),
+            Charset.defaultCharset())
     ).build();
   }
 
