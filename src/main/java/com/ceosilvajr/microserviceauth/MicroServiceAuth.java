@@ -1,6 +1,5 @@
 package com.ceosilvajr.microserviceauth;
 
-import com.ceosilvajr.microserviceauth.api.MicroServiceApiClass;
 import com.ceosilvajr.microserviceauth.retrofit.RetrofitProvider;
 
 /**
@@ -8,7 +7,7 @@ import com.ceosilvajr.microserviceauth.retrofit.RetrofitProvider;
  *
  * @author ceosilvajr@gmail.com
  **/
-public class MicroServiceAuth<T extends MicroServiceApiClass> {
+public class MicroServiceAuth<T> {
 
   private final String endpoint;
 
