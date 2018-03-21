@@ -40,7 +40,7 @@ public abstract class AbstractMicroServiceFilter implements Filter {
 
   public abstract boolean isAuthorized(final String token);
 
-  private boolean isAuthorizedService(final String token) {
+  public boolean isAuthorizedService(final String token) {
     try {
       final Payload payload = PayloadDecoder.instanceOf(token).decode();
       final String appId = MicroServiceConfig.SERVICE_APP_ID.getValue();
@@ -52,7 +52,7 @@ public abstract class AbstractMicroServiceFilter implements Filter {
     }
   }
 
-  private boolean isAuthorizedCron(final String token) {
+  public boolean isAuthorizedCron(final String token) {
     return MicroServiceConfig.SERVICE_APIKEY.getValue().equals(token);
   }
 }
