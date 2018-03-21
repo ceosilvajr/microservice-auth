@@ -33,7 +33,7 @@ public abstract class AbstractMicroServiceFilter implements Filter {
       chain.doFilter(httpRequest, httpResponse);
     } else {
       ServletResponseUtility.instanceOf(httpResponse, new ErrorResponse.Builder(HttpResponseCodes.RC_UNAUTHORIZED,
-          MicroServiceConstants.UNAUTHORIZED_ERROR_MESSAGE).build()).toJson();
+          MicroServiceConstants.UNAUTHORIZED_ERROR_MESSAGE).build()).toJson(HttpResponseCodes.RC_UNAUTHORIZED);
     }
   }
 
