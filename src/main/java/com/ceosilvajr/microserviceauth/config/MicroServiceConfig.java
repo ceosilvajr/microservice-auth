@@ -9,7 +9,7 @@ public enum MicroServiceConfig {
 
   SERVICE_AUTH_HEADER_NAME(System.getProperty("service.auth.name.header")),
   SERVICE_AUTH_REQUEST_NAME(System.getProperty("service.auth.name.request")),
-  SERVICE_SECRET_KEY(System.getProperty("service.secret.key")),
+  SERVICE_SECRET_KEY(System.getProperty("service.secretKey")),
   SERVICE_APPID(System.getProperty("service.appId")),
   SERVICE_APPKEY(System.getProperty("service.appKey")),
   SERVICE_APIKEY(System.getProperty("service.apiKey"));
