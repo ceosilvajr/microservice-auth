@@ -8,7 +8,9 @@ import com.ceosilvajr.microserviceauth.jwt.Platform;
 import com.ceosilvajr.servletutil.HttpResponseCodes;
 import com.ceosilvajr.servletutil.ServletResponseUtility;
 import com.ceosilvajr.servletutil.dto.ErrorResponse;
+import io.jsonwebtoken.JwtException;
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -24,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author ceosilvajr@gmail.com
  **/
 public class MicroServiceFilter implements Filter {
+
+  private static final Logger LOGGER = Logger.getLogger(MicroServiceFilter.class.getName());
 
   @Override public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
       throws IOException, ServletException {
@@ -47,10 +51,15 @@ public class MicroServiceFilter implements Filter {
   }
 
   private boolean isAuthorized(final String token) {
-    final Payload payload = PayloadDecoder.instanceOf(token).decode();
-    final String appId = MicroServiceConfig.SERVICE_APP_ID.getValue();
-    final String appKey = MicroServiceConfig.SERVICE_APP_KEY.getValue();
-    return payload.getPlatform().equals(Platform.SERVICE)
-        && appId.equals(payload.getAppId()) && appKey.equals(payload.getAppKey());
+    try {
+      final Payload payload = PayloadDecoder.instanceOf(token).decode();
+      final String appId = MicroServiceConfig.SERVICE_APP_ID.getValue();
+      final String appKey = MicroServiceConfig.SERVICE_APP_KEY.getValue();
+      return payload.getPlatform().equals(Platform.SERVICE)
+          && appId.equals(payload.getAppId()) && appKey.equals(payload.getAppKey());
+    } catch (final IllegalArgumentException | JwtException e) {
+      LOGGER.warning(e.getMessage());
+      return false;
+    }
   }
 }
