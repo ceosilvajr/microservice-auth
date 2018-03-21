@@ -53,6 +53,7 @@ public class MicroServiceFilter implements Filter {
   private boolean isAuthorized(final String token) {
     try {
       final Payload payload = PayloadDecoder.instanceOf(token).decode();
+      LOGGER.info(payload.toString());
       final String appId = MicroServiceConfig.SERVICE_APP_ID.getValue();
       final String appKey = MicroServiceConfig.SERVICE_APP_KEY.getValue();
       return payload.getPlatform().equals(Platform.SERVICE)
