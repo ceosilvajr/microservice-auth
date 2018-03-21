@@ -40,9 +40,33 @@ public class SymbolProvider {
   }
 }
 ```
-* Authenticate api request using `MicroServiceFilter`
+* Authenticate api request using `AbstractMicroServiceFilter`
+- Extend your filter class to `AbstractMicroServiceFilter` and implement `isAuthorized(final String token)` function.
+- To check service authentication
 ``` java
-filter("/*").through(MicroServiceFilter.class);
+public class ServiceServletFilter extends AbstractMicroServiceFilter {
+
+  @Override
+  public boolean isAuthorized(final String token){
+  return isAuthorizedService(token);
+  }
+}
+```
+- To check cron authentication
+``` java
+public class CronServletFilter extends AbstractMicroServiceFilter {
+
+  @Override
+  public boolean isAuthorized(final String token){
+  return isAuthorizedCron(token);
+  }
+}
+```
+
+- then declare this to your Module
+``` java
+filter("/cron/*").through(CronServletFilter.class);
+filter("/service/*").through(ServiceServletFilter.class);
 ```
 
 License
