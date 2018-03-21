@@ -1,6 +1,6 @@
 package com.ceosilvajr.microserviceauth.retrofit;
 
-import com.ceosilvajr.microserviceauth.config.AppConfig;
+import com.ceosilvajr.microserviceauth.config.MicroServiceConfig;
 import com.ceosilvajr.microserviceauth.jwt.Payload;
 import com.ceosilvajr.microserviceauth.jwt.PayloadEncoder;
 import com.google.gson.GsonBuilder;
@@ -28,13 +28,13 @@ public final class RetrofitProvider {
         .setLogLevel(RestAdapter.LogLevel.FULL)
         .setClient(new UrlFetchClient())
         .setConverter(new DynamicJsonConverter(new GsonBuilder().setDateFormat(dateTimeFormat).create()))
-        .setRequestInterceptor(request -> request.addHeader(AppConfig.SERVICE_HEADER_NAME.getValue(), serviceToken()))
+        .setRequestInterceptor(request -> request.addHeader(MicroServiceConfig.SERVICE_HEADER_NAME.getValue(), serviceToken()))
         .build();
   }
 
   private String serviceToken() {
-    return PayloadEncoder.instanceOf(AppConfig.SERVICE_SECRET_KEY.getValue())
-        .encode(new Payload.Builder(AppConfig.SERVICE_APP_ID.getValue(), AppConfig.SERVICE_APP_KEY.getValue()).build());
+    return PayloadEncoder.instanceOf(MicroServiceConfig.SERVICE_SECRET_KEY.getValue())
+        .encode(new Payload.Builder(MicroServiceConfig.SERVICE_APP_ID.getValue(), MicroServiceConfig.SERVICE_APP_KEY.getValue()).build());
   }
 
   public static class Builder {

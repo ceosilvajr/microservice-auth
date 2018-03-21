@@ -1,6 +1,6 @@
 package com.ceosilvajr.microserviceauth;
 
-import com.ceosilvajr.microserviceauth.api.ApiClass;
+import com.ceosilvajr.microserviceauth.api.MicroServiceApiClass;
 import com.ceosilvajr.microserviceauth.retrofit.RetrofitProvider;
 
 /**
@@ -8,16 +8,12 @@ import com.ceosilvajr.microserviceauth.retrofit.RetrofitProvider;
  *
  * @author ceosilvajr@gmail.com
  **/
-public class MicroServiceAuth<T extends ApiClass> {
+public class MicroServiceAuth<T extends MicroServiceApiClass> {
 
   private final String endpoint;
 
-  private MicroServiceAuth(final String endpoint) {
+  public MicroServiceAuth(final String endpoint) {
     this.endpoint = endpoint;
-  }
-
-  public static MicroServiceAuth instanceOf(final String endpoint) {
-    return new MicroServiceAuth(endpoint);
   }
 
   public T provideDefaultApiClass(final Class<T> apiClass) {
