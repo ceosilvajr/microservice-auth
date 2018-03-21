@@ -29,7 +29,7 @@ public final class PayloadEncoder {
   }
 
   private Payload encrypted(final Payload payload) {
-    return new Payload.Builder(convertToBase64(payload.getAppId()), convertToBase64(payload.getAppId())).build();
+    return new Payload.Builder(convertToBase64(payload.getAppId()), convertToBase64(payload.getAppKey())).build();
   }
 
   private String convertToBase64(final String string) {
