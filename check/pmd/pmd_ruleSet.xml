@@ -149,10 +149,7 @@
     <exclude name="ArrayIsStoredDirectly"/>
   </rule>
   <rule ref="rulesets/java/typeresolution.xml"/>
-  <rule ref="rulesets/java/unusedcode.xml">
-    <exclude name="UnusedPrivateMethod"/>
-  </rule>
-
+  <rule ref="rulesets/java/unusedcode.xml"/>
   <!--custom rules-->
   <!--If we reach 50 methods then this class is probably massive and needs to be refactored.-->
   <rule ref="rulesets/java/codesize.xml/TooManyMethods">
