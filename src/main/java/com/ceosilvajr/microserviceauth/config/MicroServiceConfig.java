@@ -7,10 +7,11 @@ package com.ceosilvajr.microserviceauth.config;
  **/
 public enum MicroServiceConfig {
 
-  SERVICE_HEADER_NAME(System.getProperty("service.header.name")),
+  SERVICE_AUTH_HEADER_NAME(System.getProperty("service.auth.name.header")),
+  SERVICE_AUTH_REQUEST_NAME(System.getProperty("service.auth.name.request")),
   SERVICE_SECRET_KEY(System.getProperty("service.secret.key")),
-  SERVICE_APP_ID(System.getProperty("service.appId")),
-  SERVICE_APP_KEY(System.getProperty("service.appKey")),
+  SERVICE_APPID(System.getProperty("service.appId")),
+  SERVICE_APPKEY(System.getProperty("service.appKey")),
   SERVICE_APIKEY(System.getProperty("service.apiKey"));
 
   private final String value;

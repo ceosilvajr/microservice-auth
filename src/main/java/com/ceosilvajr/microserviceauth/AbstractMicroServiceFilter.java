@@ -29,8 +29,7 @@ public abstract class AbstractMicroServiceFilter implements Filter {
       throws IOException, ServletException {
     final HttpServletRequest httpRequest = (HttpServletRequest) request;
     final HttpServletResponse httpResponse = (HttpServletResponse) response;
-    final String encodedToken = httpRequest.getHeader(MicroServiceConfig.SERVICE_HEADER_NAME.getValue());
-    if (isAuthorized(encodedToken)) {
+    if (isAuthorized(httpRequest)) {
       chain.doFilter(httpRequest, httpResponse);
     } else {
       ServletResponseUtility.instanceOf(httpResponse, new ErrorResponse.Builder(HttpResponseCodes.RC_UNAUTHORIZED,
@@ -38,13 +37,14 @@ public abstract class AbstractMicroServiceFilter implements Filter {
     }
   }
 
-  public abstract boolean isAuthorized(final String token);
+  public abstract boolean isAuthorized(final HttpServletRequest httpRequest);
 
-  public boolean isAuthorizedService(final String token) {
+  public boolean isAuthorizedService(final HttpServletRequest httpRequest) {
+    final String token = httpRequest.getHeader(MicroServiceConfig.SERVICE_AUTH_HEADER_NAME.getValue());
     try {
       final Payload payload = PayloadDecoder.instanceOf(token).decode();
-      final String appId = MicroServiceConfig.SERVICE_APP_ID.getValue();
-      final String appKey = MicroServiceConfig.SERVICE_APP_KEY.getValue();
+      final String appId = MicroServiceConfig.SERVICE_APPID.getValue();
+      final String appKey = MicroServiceConfig.SERVICE_APPKEY.getValue();
       return payload.getPlatform().equals(Platform.SERVICE)
           && appId.equals(payload.getAppId()) && appKey.equals(payload.getAppKey());
     } catch (final IllegalArgumentException | JwtException e) {
@@ -52,7 +52,8 @@ public abstract class AbstractMicroServiceFilter implements Filter {
     }
   }
 
-  public boolean isAuthorizedCron(final String token) {
+  public boolean isAuthorizedCron(final HttpServletRequest httpRequest) {
+    final String token = httpRequest.getParameter(MicroServiceConfig.SERVICE_AUTH_REQUEST_NAME.getValue());
     return MicroServiceConfig.SERVICE_APIKEY.getValue().equals(token);
   }
 }

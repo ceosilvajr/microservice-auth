@@ -28,13 +28,13 @@ public final class RetrofitProvider {
         .setLogLevel(RestAdapter.LogLevel.FULL)
         .setClient(new UrlFetchClient())
         .setConverter(new DynamicJsonConverter(new GsonBuilder().setDateFormat(dateTimeFormat).create()))
-        .setRequestInterceptor(request -> request.addHeader(MicroServiceConfig.SERVICE_HEADER_NAME.getValue(), serviceToken()))
+        .setRequestInterceptor(request -> request.addHeader(MicroServiceConfig.SERVICE_AUTH_HEADER_NAME.getValue(), serviceToken()))
         .build();
   }
 
   private String serviceToken() {
     return PayloadEncoder.instanceOf(MicroServiceConfig.SERVICE_SECRET_KEY.getValue())
-        .encode(new Payload.Builder(MicroServiceConfig.SERVICE_APP_ID.getValue(), MicroServiceConfig.SERVICE_APP_KEY.getValue()).build());
+        .encode(new Payload.Builder(MicroServiceConfig.SERVICE_APPID.getValue(), MicroServiceConfig.SERVICE_APPKEY.getValue()).build());
   }
 
   public static class Builder {
