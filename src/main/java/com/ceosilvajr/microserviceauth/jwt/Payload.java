@@ -45,4 +45,8 @@ public class Payload {
       return new Payload(this);
     }
   }
+
+  @Override public String toString() {
+    return "Payload{" + "appId='" + appId + '\'' + ", appKey='" + appKey + '\'' + ", platform=" + platform + '}';
+  }
 }
