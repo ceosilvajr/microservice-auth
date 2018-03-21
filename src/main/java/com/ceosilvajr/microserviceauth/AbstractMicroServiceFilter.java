@@ -10,10 +10,8 @@ import com.ceosilvajr.servletutil.ServletResponseUtility;
 import com.ceosilvajr.servletutil.dto.ErrorResponse;
 import io.jsonwebtoken.JwtException;
 import java.io.IOException;
-import java.util.logging.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -25,9 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ceosilvajr@gmail.com
  **/
-public class MicroServiceFilter implements Filter {
-
-  private static final Logger LOGGER = Logger.getLogger(MicroServiceFilter.class.getName());
+public abstract class AbstractMicroServiceFilter implements Filter {
 
   @Override public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
       throws IOException, ServletException {
@@ -42,15 +38,9 @@ public class MicroServiceFilter implements Filter {
     }
   }
 
-  @Override public void init(final FilterConfig filterConfig) throws ServletException {
-    // Intended to be empty
-  }
+  public abstract boolean isAuthorized(final String token);
 
-  @Override public void destroy() {
-    // Intended to be empty
-  }
-
-  private boolean isAuthorized(final String token) {
+  private boolean isAuthorizedService(final String token) {
     try {
       final Payload payload = PayloadDecoder.instanceOf(token).decode();
       final String appId = MicroServiceConfig.SERVICE_APP_ID.getValue();
@@ -60,5 +50,9 @@ public class MicroServiceFilter implements Filter {
     } catch (final IllegalArgumentException | JwtException e) {
       return false;
     }
+  }
+
+  private boolean isAuthorizedCron(final String token) {
+    return MicroServiceConfig.SERVICE_APIKEY.getValue().equals(token);
   }
 }
