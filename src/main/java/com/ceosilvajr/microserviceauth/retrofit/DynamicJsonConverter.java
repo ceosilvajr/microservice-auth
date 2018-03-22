@@ -38,7 +38,7 @@ public final class DynamicJsonConverter extends GsonConverter {
       } else {
         return gson.fromJson(string, type);
       }
-    } catch (final Exception e) {
+    } catch (final IOException e) {
       return super.fromBody(body, type);
     }
   }
