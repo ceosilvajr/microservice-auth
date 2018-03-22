@@ -18,7 +18,7 @@ ext {
   jwt = '0.7.0'
   commonsLang3 = '3.6'
   commonsCodec = '1.11'
-  servletUtil = 'v0.0.2'
+  servletUtil = 'develop-SNAPSHOT'
   testNg = '6.9.12'
   mockito = '1.10.19'
 }
