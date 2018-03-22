@@ -43,11 +43,13 @@ public final class DynamicJsonConverter extends GsonConverter {
     }
   }
 
+  @SuppressWarnings("PMD")
   private static String fromStream(final InputStream inputStream) throws IOException {
     final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
     final StringBuilder out = new StringBuilder();
-    while (reader.readLine() != null) {
-      out.append(reader.readLine());
+    String line;
+    while ((line = reader.readLine()) != null) {
+      out.append(line);
       out.append("\r\n");
     }
     return out.toString();
