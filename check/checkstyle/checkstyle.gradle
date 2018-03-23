@@ -14,9 +14,3 @@ checkstyle {
 plugins.withType(JavaPlugin) {
   checkstyle.sourceSets = [sourceSets.main]
 }
-
-// Exclude generated radixx wsdl2java file
-tasks.withType(Checkstyle) {
-  exclude '**/org/**'
-  exclude '**/com/**'
-}

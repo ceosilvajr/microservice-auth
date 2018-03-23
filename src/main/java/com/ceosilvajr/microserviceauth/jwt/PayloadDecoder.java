@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.microserviceauth.jwt;
 
 import com.ceosilvajr.microserviceauth.config.MicroServiceConfig;

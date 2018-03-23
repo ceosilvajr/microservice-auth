@@ -18,18 +18,16 @@ ext {
   jwt = '0.7.0'
   commonsLang3 = '3.6'
   commonsCodec = '1.11'
-  servletUtil = 'v0.0.2'
+  servletUtil = 'develop-SNAPSHOT'
   testNg = '6.9.12'
   mockito = '1.10.19'
 }
 
 dependencies {
-  compile group: 'com.squareup.retrofit', name: 'retrofit', version: "$rootProject.retrofit"
-  compile group: 'javax.servlet', name: 'javax.servlet-api', version: "$rootProject.javaxServlet"
-  compile group: 'io.jsonwebtoken', name: 'jjwt', version: "$rootProject.jwt"
-  compile group: 'org.apache.commons', name: 'commons-lang3', version: "$rootProject.commonsLang3"
-  compile group: 'commons-codec', name: 'commons-codec', version: "$rootProject.commonsCodec"
   compile group: 'com.github.ceosilvajr', name: 'servlet-util', version: "$rootProject.servletUtil"
+  compile group: 'com.squareup.retrofit', name: 'retrofit', version: "$rootProject.retrofit"
+  compile group: 'io.jsonwebtoken', name: 'jjwt', version: "$rootProject.jwt"
+  compile group: 'commons-codec', name: 'commons-codec', version: "$rootProject.commonsCodec"
 
   testCompile group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
   testCompile group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"

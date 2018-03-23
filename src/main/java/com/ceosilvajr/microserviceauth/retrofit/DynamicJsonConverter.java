@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 MyCape Pte. Ltd. All rights reserved
+ * Copyright (c) 2018. ceosilvajr All rights reserved
  */
 
 package com.ceosilvajr.microserviceauth.retrofit;
@@ -38,16 +38,18 @@ public final class DynamicJsonConverter extends GsonConverter {
       } else {
         return gson.fromJson(string, type);
       }
-    } catch (final Exception e) {
+    } catch (final IOException e) {
       return super.fromBody(body, type);
     }
   }
 
+  @SuppressWarnings("PMD")
   private static String fromStream(final InputStream inputStream) throws IOException {
     final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
     final StringBuilder out = new StringBuilder();
-    while (reader.readLine() != null) {
-      out.append(reader.readLine());
+    String line;
+    while ((line = reader.readLine()) != null) {
+      out.append(line);
       out.append("\r\n");
     }
     return out.toString();
