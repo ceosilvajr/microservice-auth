@@ -10,5 +10,4 @@
 
   <!-- Suppress checks for generated code. -->
   <suppress files="[/\\]target[/\\]" checks=".+"/>
-  <suppress files=".*AutoValue_.*\.java$" checks=".+"/>
 </suppressions>
