@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 MyCape Pte. Ltd. All rights reserved
+ * Copyright (c) 2018. ceosilvajr All rights reserved
  */
 
 package com.ceosilvajr.microserviceauth.retrofit;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.microserviceauth.retrofit;
 
 import com.ceosilvajr.microserviceauth.config.MicroServiceConfig;

@@ -1,4 +1,10 @@
+/*
+ * Copyright (c) 2018. ceosilvajr All rights reserved
+ */
+
 package com.ceosilvajr.microserviceauth.jwt;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Created date 20/03/2018
@@ -44,5 +50,13 @@ public class Payload {
     public Payload build() {
       return new Payload(this);
     }
+  }
+
+  @Override public String toString() {
+    return new ToStringBuilder(this)
+        .append("appId", appId)
+        .append("appKey", appKey)
+        .append("platform", platform)
+        .toString();
   }
 }
