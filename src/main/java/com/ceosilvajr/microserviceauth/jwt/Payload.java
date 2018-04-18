@@ -5,19 +5,20 @@
 package com.ceosilvajr.microserviceauth.jwt;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * Created date 20/03/2018
  *
  * @author ceosilvajr@gmail.com
  **/
-public class Payload {
+public final class Payload {
 
   private final String appId;
   private final String appKey;
   private final Platform platform;
 
-  public Payload(final Builder builder) {
+  private Payload(final Builder builder) {
     this.appId = builder.appId;
     this.appKey = builder.appKey;
     this.platform = builder.platform;
@@ -35,6 +36,10 @@ public class Payload {
     return platform;
   }
 
+  @Override public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+  }
+
   public static class Builder {
 
     private final String appId;
@@ -50,13 +55,5 @@ public class Payload {
     public Payload build() {
       return new Payload(this);
     }
-  }
-
-  @Override public String toString() {
-    return new ToStringBuilder(this)
-        .append("appId", appId)
-        .append("appKey", appKey)
-        .append("platform", platform)
-        .toString();
   }
 }
