@@ -11,7 +11,7 @@ import com.ceosilvajr.microserviceauth.retrofit.RetrofitProvider;
  *
  * @author ceosilvajr@gmail.com
  **/
-public class MicroServiceAuth<T> {
+public final class MicroServiceAuth<T> {
 
   private final String endpoint;
 

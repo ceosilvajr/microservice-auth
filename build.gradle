@@ -18,7 +18,7 @@ ext {
   jwt = '0.7.0'
   commonsLang3 = '3.6'
   commonsCodec = '1.11'
-  servletUtil = 'develop-SNAPSHOT'
+  servletUtil = 'v1.0.0'
   testNg = '6.9.12'
   mockito = '1.10.19'
 }
@@ -29,8 +29,8 @@ dependencies {
   compile group: 'io.jsonwebtoken', name: 'jjwt', version: "$rootProject.jwt"
   compile group: 'commons-codec', name: 'commons-codec', version: "$rootProject.commonsCodec"
 
-  testCompile group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
-  testCompile group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
+  testCompileOnly group: 'org.testng', name: 'testng', version: "$rootProject.testNg"
+  testCompileOnly group: 'org.mockito', name: 'mockito-core', version: "$rootProject.mockito"
 }
 
 def skip_quality_check = project.hasProperty('check') && check == 'false'
